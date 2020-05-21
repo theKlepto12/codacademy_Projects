@@ -42,3 +42,10 @@ print(girl_with_mandolin)
 
 veneer = Marketplace()
 print(veneer.show_listings())
+
+
+class Client:
+    def __init__(self, name, location, is_museum):
+        self.name = name
+        self.location = location
+        self.is_museum = type(bool)
