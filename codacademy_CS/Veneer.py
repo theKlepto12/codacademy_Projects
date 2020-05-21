@@ -36,11 +36,11 @@ class Marketplace:
 
     def show_listings(self):
         for listing in self.listings:
-            print(listing)
+            return listing
 
 
 veneer = Marketplace()
-print(veneer.show_listings())
+# print(veneer.show_listings())
 
 
 class Client:
@@ -48,6 +48,22 @@ class Client:
         self.name = name
         self.location = location
         self.is_museum = type(bool)
+
+    def sell_artwork(self, artwork, price):
+        if artwork.owner == self:
+            added_listing = Listing(artwork, price, self)
+            veneer.add_listing(added_listing)
+
+    def buy_artwork(self, artwork):
+        if artwork.owner != self:
+            art_listing = None
+            for listing in veneer.listings:
+                if listing.art == artwork:
+                    art_listing = listing
+                    break
+            if art_listing != None:
+                art_listing.art.owner = self
+                veneer.remove_listing(art_listing)
 
 
 edytta = Client("Edytta Halpirt", "Private Collection", False)
@@ -61,4 +77,23 @@ girl_with_mandolin = Art(
     edytta,
 )
 
+# print(girl_with_mandolin)
+
+
+class Listing:
+    def __init__(self, art, price, seller):
+        self.art = art
+        self.price = price
+        self.seller = seller
+
+    def __repr__(self):
+        return self.art.title + " is selling for " + self.price
+
+
+edytta.sell_artwork(girl_with_mandolin, "6M (USD)")
+print(veneer.show_listings())
+
+moma.buy_artwork(girl_with_mandolin)
 print(girl_with_mandolin)
+
+print(veneer.show_listings())
