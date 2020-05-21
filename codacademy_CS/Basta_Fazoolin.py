@@ -1,4 +1,4 @@
-from datetime import *
+from datetime import datetime
 
 
 class Menu:
@@ -83,10 +83,10 @@ kids = Menu(
 )
 
 breakfast_order = ["pancakes", "home fries", "coffee"]
-print(brunch.calculate_bill(breakfast_order))
+# print(brunch.calculate_bill(breakfast_order))
 
 e_b_order = ["salumeria plate", "mushroom ravioli (vegan)"]
-print(early_bird.calculate_bill(e_b_order))
+# print(early_bird.calculate_bill(e_b_order))
 
 
 class Franchise:
@@ -114,4 +114,26 @@ new_installment = Franchise(
     "12 East Mulberry Street", [brunch, early_bird, dinner, kids]
 )
 
-print(flagship_store.available_menus("5 PM"))
+# print(flagship_store.available_menus("5 PM"))
+
+
+class Business:
+    def __init__(self, name, franchises):
+        self.name = name
+        self.franchises = franchises
+
+
+arepas_menu = Menu(
+    "Take a' Arepa",
+    {
+        "arepa pabellon": 7.00,
+        "pernil arepa": 8.50,
+        "guayanes arepa": 8.00,
+        "jamon arepa": 7.50,
+    },
+    "10 AM",
+    "8 PM",
+)
+
+arepas_place = Franchise("189 Fitzgerald Avenue", [arepas_menu])
+newbusiness = Business("Take a' Arepa", [arepas_place, flagship_store, new_installment])
